@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 
 //Import routes
 const productsRoute = require("./routes/products");
+const cartRoute = require("./routes/cart");
 app.use("/products", productsRoute);
+app.use("/cart", cartRoute);
 
 //Connect to DB
 mongoose
