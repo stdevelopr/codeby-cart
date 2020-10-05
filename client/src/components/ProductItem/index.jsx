@@ -5,13 +5,15 @@ import "./ProductItem.scss";
 function ProductItem({ product, addToCart, removeFromCart }) {
   const [counter, setCounter] = useState(0);
   return (
-    <div className="cart">
+    <div className="item">
       <div className="image">
-        <img src={product.imageUrl} />
-        <span className="priceLabel">{counter}</span>
+        <img src={product.imageUrl} alt="product" />
+        <span className="priceLabel">x{counter}</span>
       </div>
       <div className="content">
-        <div className="title">{product.name}</div>
+        <div className="title">
+          {product.name.charAt(0) + product.name.substring(1).toLowerCase()}
+        </div>
         <div className="price">
           <span>R${insertDecimal(product.price)}</span>
         </div>
@@ -20,7 +22,7 @@ function ProductItem({ product, addToCart, removeFromCart }) {
         </div>
         <div className="control">
           <button
-            className="add-to-cart"
+            className="add"
             onClick={() => {
               addToCart(product);
               setCounter(counter + 1);
@@ -29,7 +31,7 @@ function ProductItem({ product, addToCart, removeFromCart }) {
             +
           </button>
           <button
-            className="remove-from-cart"
+            className="remove"
             onClick={() => {
               removeFromCart(product);
               if (counter > 0) setCounter(counter - 1);

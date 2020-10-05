@@ -1,9 +1,14 @@
-.cart {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap?family=Dancing+Script:wght@700");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
+$font-stack: "Poppins", sans-serif;
+
+.item {
   display: flex;
   margin-top: 20px;
 }
 .image {
-  border: 1px solid;
+  border: 1px solid #c5bbbb;
   position: relative;
   display: inline-block;
   min-width: 100px;
@@ -18,31 +23,49 @@
 }
 .content {
   max-height: 200px;
-  min-width: 210px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: relative;
   .title {
+    margin-top: 15px;
+    margin-right: 20px;
+    font-family: $font-stack;
+    white-space: nowrap;
     text-align: initial;
     font-size: small;
     font-weight: bold;
-    width: 210px;
   }
   .price {
+    font-family: $font-stack;
     margin-top: 10px;
-    font-size: small;
+    font-size: x-small;
     text-align: initial;
     color: darkgrey;
   }
   .sell-price {
+    font-size: small;
+    font-family: $font-stack;
     text-align: initial;
   }
   .control {
     position: absolute;
     bottom: 0px;
-    right: 20px;
+    button {
+      margin-right: 5px;
+      outline: none;
+      border: none;
+      border-radius: 10px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .add {
+      background-color: #b6f1ab;
+    }
+    .remove {
+      background-color: #c7c5c5;
+    }
   }
 }
 
@@ -54,7 +77,8 @@
   align-items: center;
   height: 80px;
   h1 {
-    font-size: 25px;
+    font-family: $font-stack;
+    font-size: 20px;
     margin: 20px;
   }
 }
@@ -91,6 +115,17 @@
 }
 
 .priceLabel {
+  background-color: #b6f1ab;
+  font-family: "Dancing Script", cursive;
+  color: green;
+  padding: 5px;
   position: absolute;
   left: 0px;
+}
+
+@media (min-width: 520px) {
+  .image {
+    width: 120px;
+    height: 120px;
+  }
 }
