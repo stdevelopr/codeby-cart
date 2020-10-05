@@ -1,0 +1,36 @@
+version: "3"
+services:
+  client:
+    container_name: client
+    tty: true
+    restart: always
+    build: ./client
+    ports:
+      - 3000:3000
+    links:
+      - api
+    networks:
+      - codeby-stdev
+  api:
+    container_name: api
+    restart: always
+    build: ./api
+    ports:
+      - 5000:5000
+    links:
+      - mongo
+    networks:
+      - codeby-stdev
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - codeby-stdev
+
+networks:
+  codeby-stdev:
+    driver: bridge
