@@ -1,9 +1,9 @@
 const express = require("express");
-
 const app = express();
-
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const port = 5000;
+
 require("dotenv/config");
 
 app.use(bodyParser.json());
@@ -18,17 +18,18 @@ app.use("/cart", cartRoute);
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
+    autoIndex: true,
+    useCreateIndex: true,
     useUnifiedTopology: true
   })
   .then(() => console.log("Connected DB"), err => console.log(err));
-
-mongoose.set("useCreateIndex", true);
 
 // Populate the DB
 const Product = require("./models/Product");
 const products = require("./initialProducts");
 let db = mongoose.connection;
-db.once("open", () => {
+
+Product.on("index", () => {
   Product.insertMany(products, { ordered: false })
     .then(function() {
       console.log("Data inserted"); // Success
@@ -38,4 +39,4 @@ db.once("open", () => {
     });
 });
 
-app.listen(9000);
+app.listen(port);
